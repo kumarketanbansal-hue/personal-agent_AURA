@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEXUS — Personal Network Agent</title>
+  <link rel="stylesheet" href="app.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Cursor glitter canvas -->
+  <canvas id="glitter-canvas"></canvas>
+
+  <!-- Scanline overlay -->
+  <div class="scanlines"></div>
+
+  <!-- Grid background -->
+  <div class="grid-bg"></div>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-bracket">[</span>
+      NEXUS
+      <span class="logo-bracket">]</span>
+      <span class="logo-sub">NETWORK AGENT v2.1</span>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn active" data-section="dashboard">DASHBOARD</button>
+      <button class="nav-btn" data-section="connections">CONNECTIONS</button>
+      <button class="nav-btn" data-section="rankings">RANKINGS</button>
+      <button class="nav-btn" data-section="calendar">CALENDAR</button>
+    </nav>
+    <div class="header-status">
+      <button id="sync-btn" title="Re-sync from Coral backend" onclick="syncFromCoral && syncFromCoral()">⟳ SYNC</button>
+      <span class="status-dot"></span>
+      <span class="status-text">AGENT ONLINE</span>
+    </div>
+  </header>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main">
+
+    <!-- ════ DASHBOARD SECTION ════ -->
+    <section id="dashboard" class="section active">
+      <div class="section-header">
+        <h2>NETWORK OVERVIEW</h2>
+        <span class="section-tag">// REAL-TIME</span>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">◈</div>
+          <div class="stat-value" id="stat-connections">0</div>
+          <div class="stat-label">CONNECTIONS</div>
+          <div class="stat-bar"><div class="stat-fill" style="width:72%"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">◆</div>
+          <div class="stat-value" id="stat-events">0</div>
+          <div class="stat-label">EVENTS</div>
+          <div class="stat-bar"><div class="stat-fill" style="width:45%"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">◉</div>
+          <div class="stat-value" id="stat-top">0</div>
+          <div class="stat-label">TOP RANKED</div>
+          <div class="stat-bar"><div class="stat-fill" style="width:88%"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⬡</div>
+          <div class="stat-value" id="stat-fields">0</div>
+          <div class="stat-label">FIELDS</div>
+          <div class="stat-bar"><div class="stat-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+
+      <div class="dash-bottom">
+        <div class="recent-panel">
+          <div class="panel-title">RECENT CONNECTIONS</div>
+          <div id="recent-list" class="recent-list">
+            <div class="empty-state">No connections yet. Add your network →</div>
+          </div>
+        </div>
+        <div class="activity-panel">
+          <div class="panel-title">ACTIVITY LOG</div>
+          <div id="activity-log" class="activity-log">
+            <div class="log-entry"><span class="log-time">SYS</span><span class="log-msg">Agent initialized</span></div>
+            <div class="log-entry"><span class="log-time">SYS</span><span class="log-msg">Network scan complete</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ CONNECTIONS SECTION ════ -->
+    <section id="connections" class="section">
+      <div class="section-header">
+        <h2>NETWORK CONNECTIONS</h2>
+        <button class="add-btn" id="open-modal-btn">+ ADD NODE</button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" class="search-input" id="search-input" placeholder="SEARCH CONNECTIONS..." />
+        <select class="field-filter" id="field-filter">
+          <option value="">ALL FIELDS</option>
+          <option>AI / ML</option>
+          <option>Web Dev</option>
+          <option>Data Science</option>
+          <option>Design</option>
+          <option>DevOps</option>
+          <option>Research</option>
+          <option>Blockchain</option>
+          <option>Cybersecurity</option>
+        </select>
+      </div>
+
+      <div class="connections-grid" id="connections-grid">
+        <div class="empty-state-big">
+          <div class="empty-icon">◈</div>
+          <div>No nodes in your network yet</div>
+          <div class="empty-sub">Click + ADD NODE to begin</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ RANKINGS SECTION ════ -->
+    <section id="rankings" class="section">
+      <div class="section-header">
+        <h2>PERFORMANCE RANKINGS</h2>
+        <span class="section-tag">// SORTED BY SCORE</span>
+      </div>
+
+      <div class="rank-filters">
+        <button class="rank-filter-btn active" data-field="">ALL FIELDS</button>
+        <button class="rank-filter-btn" data-field="AI / ML">AI / ML</button>
+        <button class="rank-filter-btn" data-field="Web Dev">WEB DEV</button>
+        <button class="rank-filter-btn" data-field="Data Science">DATA SCIENCE</button>
+        <button class="rank-filter-btn" data-field="Design">DESIGN</button>
+        <button class="rank-filter-btn" data-field="DevOps">DEVOPS</button>
+        <button class="rank-filter-btn" data-field="Research">RESEARCH</button>
+        <button class="rank-filter-btn" data-field="Blockchain">BLOCKCHAIN</button>
+        <button class="rank-filter-btn" data-field="Cybersecurity">CYBERSECURITY</button>
+      </div>
+
+      <div class="rankings-table">
+        <div class="rank-header-row">
+          <span>RANK</span>
+          <span>PROFILE</span>
+          <span>FIELD</span>
+          <span>SCORE</span>
+          <span>LINKS</span>
+        </div>
+        <div id="rankings-list">
+          <div class="empty-state">Add connections to see rankings</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ CALENDAR SECTION ════ -->
+    <section id="calendar" class="section">
+      <div class="section-header">
+        <h2>EVENT CALENDAR</h2>
+        <button class="add-btn" id="open-event-modal-btn">+ ADD EVENT</button>
+      </div>
+
+      <div class="calendar-layout">
+        <div class="calendar-widget">
+          <div class="cal-nav">
+            <button class="cal-arrow" id="prev-month">&#9664;</button>
+            <div class="cal-month-year" id="cal-month-year">MONTH YEAR</div>
+            <button class="cal-arrow" id="next-month">&#9654;</button>
+          </div>
+          <div class="cal-days-header">
+            <span>SUN</span><span>MON</span><span>TUE</span>
+            <span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+
+        <div class="events-panel">
+          <div class="panel-title">UPCOMING EVENTS</div>
+          <div id="events-list" class="events-list">
+            <div class="empty-state">No events scheduled</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ ADD CONNECTION MODAL ══════════ -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span>ADD NETWORK NODE</span>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>NAME</label>
+          <input type="text" id="f-name" placeholder="Full Name" />
+        </div>
+        <div class="form-row">
+          <label>ROLE / TITLE</label>
+          <input type="text" id="f-role" placeholder="e.g. ML Engineer" />
+        </div>
+        <div class="form-row">
+          <label>FIELD</label>
+          <select id="f-field">
+            <option>AI / ML</option>
+            <option>Web Dev</option>
+            <option>Data Science</option>
+            <option>Design</option>
+            <option>DevOps</option>
+            <option>Research</option>
+            <option>Blockchain</option>
+            <option>Cybersecurity</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>LINKEDIN URL</label>
+          <input type="url" id="f-linkedin" placeholder="https://linkedin.com/in/username" />
+        </div>
+        <div class="form-row">
+          <label>GITHUB URL</label>
+          <input type="url" id="f-github" placeholder="https://github.com/username" />
+        </div>
+        <div class="form-row">
+          <label>PERFORMANCE SCORE <span class="score-hint">(0–100)</span></label>
+          <input type="range" id="f-score" min="0" max="100" value="50" />
+          <span class="score-display" id="score-display">50</span>
+        </div>
+        <div class="form-row">
+          <label>NOTES</label>
+          <textarea id="f-notes" placeholder="How you met, skills, context..."></textarea>
+        </div>
+        <button class="submit-btn" id="submit-connection">ESTABLISH CONNECTION</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ ADD EVENT MODAL ══════════ -->
+  <div class="modal-overlay" id="event-modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span>SCHEDULE EVENT</span>
+        <button class="modal-close" id="event-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>EVENT TITLE</label>
+          <input type="text" id="e-title" placeholder="Event name" />
+        </div>
+        <div class="form-row">
+          <label>DATE</label>
+          <input type="date" id="e-date" />
+        </div>
+        <div class="form-row">
+          <label>TIME</label>
+          <input type="time" id="e-time" />
+        </div>
+        <div class="form-row">
+          <label>TYPE</label>
+          <select id="e-type">
+            <option>Conference</option>
+            <option>Meetup</option>
+            <option>Hackathon</option>
+            <option>Interview</option>
+            <option>Call</option>
+            <option>Workshop</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>DESCRIPTION</label>
+          <textarea id="e-desc" placeholder="Event details..."></textarea>
+        </div>
+        <button class="submit-btn" id="submit-event">SCHEDULE EVENT</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

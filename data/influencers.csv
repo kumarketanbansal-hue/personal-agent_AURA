@@ -1,0 +1,8 @@
+
+influencer_id	,full_name,	x_handle	,linkedin_url	,influence_score,	primary_industry	,attending_event_id
+inf_101	,Alice Vance	,@alice_dev,	linkedin.com/in/alice-vance	,92	,Artificial Intelligence	,ev_001
+inf_102	,Bob Chen,	@bob_builds,	linkedin.com/in/bob-chen,	85	,Software-as-a-Service,	ev_002
+inf_103	,Charlie Smith	,@charlie_blocks	,linkedin.com/in/charlie-s,	78,	Blockchain	,ev_003
+inf_104,	Diana Prince	,@diana_ops,	linkedin.com/in/diana-p,	88,	Cloud Infrastructure,	ev_004
+inf_105	,Evan Wright,	@evan_ai	,linkedin.com/in/evan-wright,	95	,Artificial Intelligence,	ev_001
+

@@ -1,0 +1,6 @@
+
+interaction_id,	person_name	,last_contact_date	,status	,notes
+int_201,	Alice Vance	,5/10/2026	,Needs Follow-Up,	Met briefly at coffee stand. Discussed compute nodes.
+int_202	,Bob Chen	,5/25/2026	,In Touch	,Sent follow-up email about their API spec.
+int_203	,Charlie Smith	,	Not Met,Target contact for Austin trip.
+

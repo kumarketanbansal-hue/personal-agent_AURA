@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "coral": {
+      "type": "stdio",
+      "command": "C:\\Users\\DELL\\.local\\bin\\coral.exe",
+      "args": ["mcp-stdio"]
+    }
+  }
+}
+
+

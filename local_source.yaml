@@ -1,0 +1,73 @@
+name: local_network
+version: 0.1.0
+dsl_version: 3
+backend: file
+
+test_queries:
+  - SELECT * FROM local_network.upcoming_events LIMIT 1
+  - SELECT * FROM local_network.social_influencers LIMIT 1
+  - SELECT * FROM local_network.interaction_ledger LIMIT 1
+
+tables:
+  - name: upcoming_events
+    description: Upcoming business events with location, date and industry
+    format: csv
+    source:
+      location: file:///C:/Users/kumar/coral-agent/data/
+      glob: events.csv
+    columns:
+      - name: event_id
+        type: Utf8
+      - name: event_name
+        type: Utf8
+      - name: location
+        type: Utf8
+      - name: event_date
+        type: Utf8
+      - name: industry
+        type: Utf8
+      - name: attendee_count
+        type: Int64
+
+  - name: social_influencers
+    description: Influential people attending events with their social profiles
+    format: csv
+    source:
+      location: file:///C:/Users/kumar/coral-agent/data/
+      glob: influencers.csv
+    columns:
+      - name: influencer_id
+        type: Utf8
+      - name: full_name
+        type: Utf8
+      - name: x_handle
+        type: Utf8
+      - name: linkedin_url
+        type: Utf8
+      - name: influence_score
+        type: Int64
+      - name: primary_industry
+        type: Utf8
+      - name: attending_event_id
+        type: Utf8
+
+  - name: interaction_ledger
+    description: Personal CRM tracking connections made at events
+    format: csv
+    source:
+      location: file:///C:/Users/kumar/coral-agent/data/
+      glob: my_interactions.csv
+    columns:
+      - name: interaction_id
+        type: Utf8
+      - name: person_name
+        type: Utf8
+      - name: last_contact_date
+        type: Utf8
+        nullable: true
+      - name: status
+        type: Utf8
+      - name: notes
+        type: Utf8
+        nullable: true
+

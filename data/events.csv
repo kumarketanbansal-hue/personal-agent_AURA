@@ -1,0 +1,6 @@
+
+event_id	,event_name,	location	,event_date	,industry	,attendee_count
+ev_001,	AI Hardware Summit 2026	,San Francisco	,6/15/2026	,Artificial Intelligence	,500
+ev_002,	SaaS Founders Mixer	,New York	,6/22/2026	,Software-as-a-Service,	150
+ev_003,	Web3 & Decentralized Web	,Austin	,7/5/2026	,Blockchain	,300
+ev_004	,DevOps World Forum	,Chicago	,7/12/2026,	Cloud Infrastructure,	800
