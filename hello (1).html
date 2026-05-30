@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexus — Network Agent</title>
+  <link rel="stylesheet" href="app.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Google+Sans+Display:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="header-left">
+      <div class="app-icon">
+        <span class="material-icons-round">hub</span>
+      </div>
+      <div class="logo-wrap">
+        <span class="logo-name">Nexus</span>
+        <span class="logo-sub">Network Agent</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-btn active" data-section="dashboard">
+        <span class="material-icons-round">dashboard</span>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-btn" data-section="connections">
+        <span class="material-icons-round">people</span>
+        <span>Connections</span>
+      </button>
+      <button class="nav-btn" data-section="rankings">
+        <span class="material-icons-round">leaderboard</span>
+        <span>Rankings</span>
+      </button>
+      <button class="nav-btn" data-section="calendar">
+        <span class="material-icons-round">calendar_month</span>
+        <span>Calendar</span>
+      </button>
+    </nav>
+
+    <div class="header-right">
+      <button id="sync-btn" class="icon-btn" title="Sync from Coral" onclick="syncFromCoral && syncFromCoral()">
+        <span class="material-icons-round">sync</span>
+      </button>
+      <div class="status-chip">
+        <span class="status-dot"></span>
+        <span>Online</span>
+      </div>
+      <div class="avatar-btn">A</div>
+    </div>
+  </header>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- ════ DASHBOARD ════ -->
+    <section id="dashboard" class="section active">
+      <div class="page-title">
+        <h1>Network Overview</h1>
+        <span class="page-chip">Live</span>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-top-row">
+            <span class="stat-label">Connections</span>
+            <span class="stat-icon-wrap blue"><span class="material-icons-round">people</span></span>
+          </div>
+          <div class="stat-value" id="stat-connections">0</div>
+          <div class="stat-trend">
+            <span class="material-icons-round">trending_up</span> Synced from Coral
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top-row">
+            <span class="stat-label">Events</span>
+            <span class="stat-icon-wrap green"><span class="material-icons-round">event</span></span>
+          </div>
+          <div class="stat-value" id="stat-events">0</div>
+          <div class="stat-trend">
+            <span class="material-icons-round">trending_up</span> This season
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top-row">
+            <span class="stat-label">Top Score</span>
+            <span class="stat-icon-wrap yellow"><span class="material-icons-round">emoji_events</span></span>
+          </div>
+          <div class="stat-value" id="stat-top">0</div>
+          <div class="stat-trend">
+            <span class="material-icons-round">star</span> Influence score
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top-row">
+            <span class="stat-label">Fields</span>
+            <span class="stat-icon-wrap red"><span class="material-icons-round">category</span></span>
+          </div>
+          <div class="stat-value" id="stat-fields">0</div>
+          <div class="stat-trend">
+            <span class="material-icons-round">workspaces</span> Industries
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-bottom">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Recent Connections</span>
+            <button class="text-btn" onclick="document.querySelector('[data-section=connections]').click()">View all</button>
+          </div>
+          <div id="recent-list" class="recent-list">
+            <div class="empty-state">
+              <span class="material-icons-round">person_add</span>
+              <p>No connections yet</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Activity</span>
+          </div>
+          <div id="activity-log" class="activity-log">
+            <div class="log-entry"><span class="log-time">Now</span><span class="log-msg">Agent initialized</span></div>
+            <div class="log-entry"><span class="log-time">Now</span><span class="log-msg">Network scan complete</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ CONNECTIONS ════ -->
+    <section id="connections" class="section">
+      <div class="page-title">
+        <h1>Connections</h1>
+        <button class="filled-btn" id="open-modal-btn">
+          <span class="material-icons-round">add</span> Add connection
+        </button>
+      </div>
+
+      <div class="filter-bar">
+        <div class="search-wrap">
+          <span class="material-icons-round">search</span>
+          <input type="text" class="search-input" id="search-input" placeholder="Search connections…" />
+        </div>
+        <select class="field-filter" id="field-filter">
+          <option value="">All fields</option>
+          <option>AI / ML</option>
+          <option>Web Dev</option>
+          <option>Data Science</option>
+          <option>Design</option>
+          <option>DevOps</option>
+          <option>Research</option>
+          <option>Blockchain</option>
+          <option>Cybersecurity</option>
+        </select>
+      </div>
+
+      <div class="connections-grid" id="connections-grid">
+        <div class="empty-state-big">
+          <span class="material-icons-round">group_add</span>
+          <p>No connections yet</p>
+          <span class="empty-sub">Click "Add connection" to get started</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ RANKINGS ════ -->
+    <section id="rankings" class="section">
+      <div class="page-title">
+        <h1>Rankings</h1>
+        <span class="page-chip">By influence score</span>
+      </div>
+
+      <div class="chip-bar">
+        <button class="chip active" data-field="">All</button>
+        <button class="chip" data-field="AI / ML">AI / ML</button>
+        <button class="chip" data-field="Web Dev">Web Dev</button>
+        <button class="chip" data-field="Data Science">Data Science</button>
+        <button class="chip" data-field="Design">Design</button>
+        <button class="chip" data-field="DevOps">DevOps</button>
+        <button class="chip" data-field="Research">Research</button>
+        <button class="chip" data-field="Blockchain">Blockchain</button>
+        <button class="chip" data-field="Cybersecurity">Cybersecurity</button>
+      </div>
+
+      <div class="rankings-card">
+        <div class="rank-header-row">
+          <span>#</span>
+          <span>Person</span>
+          <span>Field</span>
+          <span>Score</span>
+          <span>Links</span>
+        </div>
+        <div id="rankings-list">
+          <div class="empty-state">
+            <span class="material-icons-round">leaderboard</span>
+            <p>Add connections to see rankings</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ CALENDAR ════ -->
+    <section id="calendar" class="section">
+      <div class="page-title">
+        <h1>Calendar</h1>
+        <button class="filled-btn" id="open-event-modal-btn">
+          <span class="material-icons-round">add</span> Add event
+        </button>
+      </div>
+
+      <div class="calendar-layout">
+        <div class="calendar-widget">
+          <div class="cal-nav">
+            <button class="icon-btn" id="prev-month"><span class="material-icons-round">chevron_left</span></button>
+            <div class="cal-month-year" id="cal-month-year">Month Year</div>
+            <button class="icon-btn" id="next-month"><span class="material-icons-round">chevron_right</span></button>
+          </div>
+          <div class="cal-days-header">
+            <span>S</span><span>M</span><span>T</span>
+            <span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+
+        <div class="panel events-panel-wrap">
+          <div class="panel-header">
+            <span class="panel-title">Upcoming Events</span>
+          </div>
+          <div id="events-list" class="events-list">
+            <div class="empty-state">
+              <span class="material-icons-round">event_busy</span>
+              <p>No events scheduled</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ ADD CONNECTION MODAL ══════════ -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span>Add connection</span>
+        <button class="icon-btn modal-close" id="modal-close">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>Full name</label>
+          <input type="text" id="f-name" placeholder="e.g. Jane Smith" />
+        </div>
+        <div class="form-row">
+          <label>Role / Title</label>
+          <input type="text" id="f-role" placeholder="e.g. ML Engineer" />
+        </div>
+        <div class="form-row">
+          <label>Field</label>
+          <select id="f-field">
+            <option>AI / ML</option>
+            <option>Web Dev</option>
+            <option>Data Science</option>
+            <option>Design</option>
+            <option>DevOps</option>
+            <option>Research</option>
+            <option>Blockchain</option>
+            <option>Cybersecurity</option>
+          </select>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label>LinkedIn URL</label>
+            <input type="url" id="f-linkedin" placeholder="linkedin.com/in/…" />
+          </div>
+          <div>
+            <label>GitHub URL</label>
+            <input type="url" id="f-github" placeholder="github.com/…" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Performance score <span class="score-hint">0 – 100</span></label>
+          <div class="range-row">
+            <input type="range" id="f-score" min="0" max="100" value="50" />
+            <span class="score-display" id="score-display">50</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Notes</label>
+          <textarea id="f-notes" placeholder="How you met, key skills, context…"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="outline-btn" id="modal-cancel-btn">Cancel</button>
+          <button class="filled-btn" id="submit-connection">Save connection</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ ADD EVENT MODAL ══════════ -->
+  <div class="modal-overlay" id="event-modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span>Schedule event</span>
+        <button class="icon-btn modal-close" id="event-modal-close">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>Event title</label>
+          <input type="text" id="e-title" placeholder="e.g. AI Summit 2026" />
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label>Date</label>
+            <input type="date" id="e-date" />
+          </div>
+          <div>
+            <label>Time</label>
+            <input type="time" id="e-time" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Type</label>
+          <select id="e-type">
+            <option>Conference</option>
+            <option>Meetup</option>
+            <option>Hackathon</option>
+            <option>Interview</option>
+            <option>Call</option>
+            <option>Workshop</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Description</label>
+          <textarea id="e-desc" placeholder="Details, agenda, location…"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="outline-btn" id="event-cancel-btn">Cancel</button>
+          <button class="filled-btn" id="submit-event">Save event</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // wire cancel buttons
+    document.getElementById('modal-cancel-btn').onclick = () =>
+      document.getElementById('modal-overlay').classList.remove('open');
+    document.getElementById('event-cancel-btn').onclick = () =>
+      document.getElementById('event-modal-overlay').classList.remove('open');
+
+    // wire rank-filter-btn class for JS compatibility
+    document.querySelectorAll('.chip[data-field]').forEach(btn => {
+      btn.classList.add('rank-filter-btn');
+    });
+  </script>
+</body>
+</html>
