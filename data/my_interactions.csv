@@ -1,6 +1,21 @@
-
-interaction_id,	person_name	,last_contact_date	,status	,notes
-int_201,	Alice Vance	,5/10/2026	,Needs Follow-Up,	Met briefly at coffee stand. Discussed compute nodes.
-int_202	,Bob Chen	,5/25/2026	,In Touch	,Sent follow-up email about their API spec.
-int_203	,Charlie Smith	,	Not Met,Target contact for Austin trip.
-
+interaction_id,person_name,last_contact_date,status,notes
+int_201,Alice Vance,2026-05-15,Needs Follow-Up,Met briefly at coffee stand. Discussed compute nodes.
+int_202,Bob Chen,2026-05-20,In Touch,Sent follow-up email about their API spec.
+int_203,Charlie Smith,,Not Met,Target contact for Austin trip.
+int_204,Diana Prince,2026-04-18,Needs Follow-Up,Spoke at DevOps panel. Wants intro to our infra team.
+int_205,Fiona Zhao,2026-05-30,In Touch,Active DM thread about diffusion models.
+int_206,Ivan Sousa,2026-03-12,Needs Follow-Up,Met at KubeCon. Discussed service mesh migration.
+int_207,Nikhil Rao,,Not Met,Referred by Diana. Target for cloud collab.
+int_208,Olivia Banks,2026-05-01,Needs Follow-Up,Pitched our tool. Said she would trial it.
+int_209,Peter Quinn,2026-05-10,In Touch,Shared the new cybersecurity report.
+int_210,Quinn Roberts,,Not Met,Find a warm intro via LinkedIn.
+int_211,Rachel Green,2026-05-25,Needs Follow-Up,Waiting on her feedback for the data pipeline pitch.
+int_212,Sam Taylor,2026-04-05,Closed,Decided to go with a competitor.
+int_213,Tom Hardy,2026-05-28,In Touch,Scheduling a demo for next week.
+int_214,Ursula Vance,2026-02-14,Needs Follow-Up,Long time no see. Reach out to reconnect.
+int_215,Victor Stone,,Not Met,High priority target for Q3.
+int_216,Wanda Maximoff,2026-05-29,In Touch,Great chat about AI ethics.
+int_217,Xavier Charles,2026-04-22,Needs Follow-Up,Follow up on the educational grant.
+int_218,Yelena Belova,2026-05-05,In Touch,Contract negotiations ongoing.
+int_219,Zack Taylor,,Not Met,Add to the mailing list for the webinar.
+int_220,Arthur Curry,2026-05-27,Needs Follow-Up,Send over the updated pricing sheet.
