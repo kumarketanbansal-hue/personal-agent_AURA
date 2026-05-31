@@ -1,8 +1,21 @@
-
-influencer_id	,full_name,	x_handle	,linkedin_url	,influence_score,	primary_industry	,attending_event_id
-inf_101	,Alice Vance	,@alice_dev,	linkedin.com/in/alice-vance	,92	,Artificial Intelligence	,ev_001
-inf_102	,Bob Chen,	@bob_builds,	linkedin.com/in/bob-chen,	85	,Software-as-a-Service,	ev_002
-inf_103	,Charlie Smith	,@charlie_blocks	,linkedin.com/in/charlie-s,	78,	Blockchain	,ev_003
-inf_104,	Diana Prince	,@diana_ops,	linkedin.com/in/diana-p,	88,	Cloud Infrastructure,	ev_004
-inf_105	,Evan Wright,	@evan_ai	,linkedin.com/in/evan-wright,	95	,Artificial Intelligence,	ev_001
-
+influencer_id,full_name,x_handle,linkedin_url,influence_score,primary_industry,attending_event_id
+inf_101,Alice Vance,@alice_dev,linkedin.com/in/alice-vance,92,Artificial Intelligence,ev_001
+inf_102,Bob Chen,@bob_builds,linkedin.com/in/bob-chen,85,Software-as-a-Service,ev_002
+inf_103,Charlie Smith,@charlie_blocks,linkedin.com/in/charlie-smith,78,Blockchain,ev_003
+inf_104,Diana Prince,@diana_ops,linkedin.com/in/diana-prince,88,Cloud Infrastructure,ev_004
+inf_105,Evan Wright,@evan_ai,linkedin.com/in/evan-wright,95,Artificial Intelligence,ev_001
+inf_106,Fiona Zhao,@fiona_ml,linkedin.com/in/fiona-zhao,91,Artificial Intelligence,ev_005
+inf_107,George Hall,@george_saas,linkedin.com/in/george-hall,80,Software-as-a-Service,ev_002
+inf_108,Hina Patel,@hina_web3,linkedin.com/in/hina-patel,74,Blockchain,ev_003
+inf_109,Ivan Sousa,@ivan_devops,linkedin.com/in/ivan-sousa,87,Cloud Infrastructure,ev_007
+inf_110,Jess Kim,@jess_starts,linkedin.com/in/jess-kim,82,General Tech,ev_006
+inf_111,Karen Li,@karen_fintech,linkedin.com/in/karen-li,89,FinTech,ev_008
+inf_112,Leo Martins,@leo_oss,linkedin.com/in/leo-martins,76,Open Source,ev_009
+inf_113,Maya Torres,@maya_pm,linkedin.com/in/maya-torres,84,Product Management,ev_010
+inf_114,Nikhil Rao,@nikhil_cloud,linkedin.com/in/nikhil-rao,90,Cloud Infrastructure,ev_007
+inf_115,Olivia Banks,@olivia_ai,linkedin.com/in/olivia-banks,93,Artificial Intelligence,ev_001
+inf_116,Peter Quinn,@peter_cyber,linkedin.com/in/peter-quinn,86,Cybersecurity,ev_011
+inf_117,Quinn Roberts,@quinn_ux,linkedin.com/in/quinn-roberts,81,UX Design,ev_012
+inf_118,Rachel Green,@rachel_data,linkedin.com/in/rachel-green,88,Data Science,ev_013
+inf_119,Sam Taylor,@sam_iot,linkedin.com/in/sam-taylor,79,Internet of Things,ev_014
+inf_120,Tom Hardy,@tom_ar,linkedin.com/in/tom-hardy,83,Augmented Reality,ev_015
