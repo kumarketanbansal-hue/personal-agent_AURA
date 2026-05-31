@@ -1,6 +1,24 @@
-
-event_id	,event_name,	location	,event_date	,industry	,attendee_count
-ev_001,	AI Hardware Summit 2026	,San Francisco	,6/15/2026	,Artificial Intelligence	,500
-ev_002,	SaaS Founders Mixer	,New York	,6/22/2026	,Software-as-a-Service,	150
-ev_003,	Web3 & Decentralized Web	,Austin	,7/5/2026	,Blockchain	,300
-ev_004	,DevOps World Forum	,Chicago	,7/12/2026,	Cloud Infrastructure,	800
+event_id,event_name,place,date
+1,Tech Summit,"Moscone Center, San Francisco",2026-06-15
+2,Music Fest,"Coachella Valley, California",2026-07-20
+3,Research Symposium,"MIT Campus, Boston",2026-08-10
+4,Food & Wine Expo,"Navy Pier, Chicago",2026-09-05
+5,Global Health Conference,"ExCeL London, UK",2026-10-12
+6,Startup Pitch Night,"WeWork, Austin",2026-06-25
+7,Auto Show 2026,"Javits Center, New York",2026-11-18
+8,International Film Festival,"Cannes, France",2026-05-15
+9,Comic Con,San Diego Convention Center,2026-07-25
+10,Art & Design Biennale,"Venice, Italy",2026-09-10
+11,City Marathon,"Berlin, Germany",2026-09-27
+12,Esports Championship,"Crypto.com Arena, LA",2026-10-05
+13,Global Book Fair,"Frankfurt, Germany",2026-10-14
+14,Climate Action Summit,"UN Headquarters, New York",2026-09-22
+15,Real Estate Expo,Dubai World Trade Centre,2026-11-02
+16,Spring Fashion Week,"Milan, Italy",2026-09-20
+17,Culinary Masterclass,"Tokyo Big Sight, Japan",2026-08-15
+18,FinTech World Forum,"Marina Bay Sands, Singapore",2026-11-10
+19,Robotics Convention,"Makuhari Messe, Tokyo",2026-07-08
+20,Wellness & Yoga Retreat,"Ubud, Bali",2026-12-01
+21,Jazz Heritage Festival,"New Orleans, Louisiana",2026-05-01
+22,Higher Education Summit,Metro Toronto Convention Centre,2026-06-10
+23,International Aerospace Expo,"Le Bourget, Paris",2026-06-20
